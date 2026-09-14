@@ -1,13 +1,5 @@
 # Power Query Transformations
 
-Step-by-step record of how the raw tables were reshaped before loading into
-the model.
-
-> Перенести сюди текст і скріншоти з Google-документа. Для кожного кроку:
-> що було, що зробила, навіщо.
-
----
-
 ## Customers
 
 Data types were set first. CustomerID was converted from text to whole number, since it is the key that relates Customers to Orders and a text key prevents the relationship from working. Phone went the other way, from number to text: a phone number is an identifier rather than a quantity, and as a numeric column it loses leading zeros and gets aggregated by default.
@@ -36,6 +28,8 @@ Rows with an empty ProductPrice were removed, since price is a required attribut
 
 ProductName and ProductCategory were trimmed and normalised to title case, so that the same category does not appear several times in the report.
 
+![Products after transformation](../images/pq_products.png) 
+
 ## Payments
 
 Rows with an empty OrderID were removed: a payment with no order attached cannot be matched to anything and would only add noise. Rows with a missing ShippingDate were removed as well.
@@ -46,11 +40,15 @@ PaymentMethod and PaymentStatus were trimmed and normalised to title case, as bo
 
 Duplicates were removed on OrderID.
 
+![Payments after transformation](../images/pq_payments.png) 
+
 ## Orders
 
 Empty cells were removed from CustomerID, since an order that cannot be attributed to a customer breaks the relationship to the Customers table. The decimal separator was replaced in that column and the type converted.
 
 OrderAmount had its separator replaced and was converted to decimal, so that order values could be aggregated.
+
+![Orders after transformation](../images/pq_orders.png) 
 
 ## Order_Metadata
 
@@ -63,4 +61,6 @@ Duplicates were removed on OrderID.
 In notes, null was replaced with an explicit "not specified" marker rather than being left empty. Marking a missing value keeps the row in the dataset and makes the gap visible in the report, instead of silently dropping it from counts.
 
 tracking, type, os, source, campaign and notes were set to text type.
+
+![Order_Metadata after transformation](../images/pq_order_metadata.png) 
 
