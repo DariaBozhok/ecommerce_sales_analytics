@@ -40,6 +40,8 @@ Six related tables: `Customers`, `Orders`, `Order_Details`, `Products`,
 
 ### 2. Transformation in Power Query — [`power_query/transformations.md`](power_query/transformations.md)
 
+A detailed description of the changes I made in Power Query - https://docs.google.com/document/d/1xv3GDb_833O7MhBudSFZP_WV9E3RaNGq0zerTqbLSs4/edit?usp=sharing
+
 Column typing, renaming, removal of unused fields, and shaping each table so it
 loads into the model ready to relate. Documented table by table with screenshots.
 
@@ -85,8 +87,19 @@ the year.
 
 ## Key findings
 
-[1-2 речення з конкретикою: яка категорія дає найбільшу частку виручки,
-які міста лідирують, чи видно сезонність.]
+Electronics outsell Home consistently across every month of the year, usually by a
+factor of three to four, so category performance is a structural pattern rather than
+a seasonal effect. Sales peak in May and August, with the weakest months in January
+and September.
+
+Order volume is spread across regional cities rather than concentrated in the
+capital: Odesa leads with 103 orders, followed by Khmelnytskyi and Zhytomyr, while
+Kyiv sits last with 37. That argues against treating Kyiv as the primary market when
+planning delivery or promotion.
+
+The top five products account for 11.2M in sales, with Laptop Pro UZ50 alone at 3.5M,
+close to a third of that group. Revenue is therefore dependent on a small number of
+SKUs, which is worth watching as a supply risk.
 
 ## Limitations
 
